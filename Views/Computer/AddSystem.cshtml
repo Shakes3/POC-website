@@ -1,0 +1,70 @@
+@model POC3.Models.Computer
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+        }
+
+        .main {
+            margin-left: 260px;
+            /* Same as the width of the sidenav */
+            padding: 20px;
+        }
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 30px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    @Html.Partial("_SideNav")
+    <div class="main">
+        <h1>Add a new System</h1>
+        <a asp-controller="Computer" asp-action="GetSystem">View System</a>
+
+        <form asp-action="AddSystem" method="post">
+            <div class="form-group">
+                <label asp-for="ComputerName">System Name</label>
+                <input asp-for="ComputerName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ComputerNumber">System Number</label>
+                <input asp-for="ComputerNumber" class="form-control" />
+            </div>
+            @* this drop down is for status of computer is active of not *@
+            <div class="form-group">
+                <label asp-for="ComputerStatus">Status</label>
+                <select asp-for="ComputerStatus" class="form-control">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ComputerUserName">System UserName</label>
+                <input asp-for="ComputerUserName" class="form-control" />
+            </div>
+            <div class="form-group">
+            <label asp-for="CompanyId">Company</label>
+            @* this will automatically show the added companies *@
+            <select asp-for="CompanyId" class="form-control" asp-items="@(new SelectList(ViewBag.Companies, "CompanyId", "CompanyName"))">
+                <option value="">Select a Company</option>
+            </select>
+        </div>
+            <button type="submit" class="btn btn-primary">Add System</button>
+        </form>
+    </div>
+</body>

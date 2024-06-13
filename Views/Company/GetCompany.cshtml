@@ -1,0 +1,79 @@
+@model IEnumerable<POC3.Models.Company>
+
+@{
+    ViewData["Title"] = "List of Companies";
+    int sn = 1;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+        }
+
+        .main {
+            margin-left: 260px;
+            /* Same as the width of the sidenav */
+            padding: 20px;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    @Html.Partial("_SideNav")
+
+    <div class="main">
+        <h1>@ViewData["Title"]</h1>
+        <a asp-controller="Company" asp-action="AddCompany">Add Company</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Company Id</th>
+                    <th>Company Name</th>
+                    <th>Company Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var company in Model)
+                {
+                    <tr>
+                        <td>@(sn++)</td>
+                        @* <td>@(company.CompanyId - 1)</td> *@
+                        <td>@company.CompanyName</td>
+                        <td>@company.CompanyStatus</td>
+                        <td>
+                            <form asp-action="DeleteCompany" asp-controller="Company" method="post" style="display:inline;">
+                            <input type="hidden" name="companyId" value="@company.CompanyId" />
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                        </form>
+                        <a asp-controller="Company" asp-action="EditCompany" asp-route-id="@company.CompanyId">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

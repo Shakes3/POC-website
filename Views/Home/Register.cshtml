@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model POC3.Models.User
+
+
+<h1>Register</h1>
+
+<hr />
+
+<div class="content">
+    <div class=box>
+        <form asp-action="Register" asp-controller="Home" method="post">
+            @* <div asp-validation-summary="All" class="text-danger"></div> *@
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" name="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                 <span class="text-danger">
+                    @Html.ValidationMessage("EmailExists")
+                </span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" type="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Password</label>
+                <input asp-for="Password" type="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+
+            <div style="text-align: center" class="form-group">
+                <input type="submit" value="Registration" class="btn btn-primary" />
+            </div>
+            <div style="text-align: center">
+                <a asp-action="Login" asp-controller="Home">Account already exists </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

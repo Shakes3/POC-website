@@ -1,0 +1,34 @@
+<div class="sidenav">
+    <h2>POC</h2>
+    <a asp-controller="Main" asp-action="Home">Home</a>
+    <a asp-controller="Company" asp-action="GetCompany">Companies</a>
+    <a asp-controller="Company" asp-action="AddCompany">Add Company</a>
+    <a asp-controller="Computer" asp-action="GetSystem">Systems</a>
+    <a asp-controller="Computer" asp-action="AddSystem">Add System</a>
+</div>
+
+<style>
+    .sidenav {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+</style>

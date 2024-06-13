@@ -1,0 +1,47 @@
+button{
+    height: 40px;
+    width: 80%;
+    margin: auto;
+  
+  
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(27, 120, 124);
+    background-color: white;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding: 1em 2em;
+    border-radius: 50px;
+    border: none;
+    outline: 2px solid rgb(67, 120, 124);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 1s;
+  }
+  
+  button:hover{
+    color: #ffff;
+    transform: scale(1.1);
+    outline: 2px solid rgb(27, 120, 124);
+    box-shadow: 4px 5px 17px -4px;
+  }
+  
+  button::before{
+    content: "";
+    background-color: rgb(27, 120, 124);
+    outline: 2px solid rgb(16, 115, 118);
+    position: absolute;
+    top: 0;
+    left: -50px;
+    height: 100%;
+    width: 0%;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: all 1s;
+  }
+  
+  button:hover::before{
+    width: 250%;
+  }
+  

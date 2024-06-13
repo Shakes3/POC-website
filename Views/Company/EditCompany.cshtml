@@ -1,0 +1,75 @@
+@model POC3.Models.Company
+ @Html.Partial("_SideNav")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Company - YourAppName</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+        }
+
+        .main {
+            margin-left: 260px;
+            /* Same as the width of the sidenav */
+            padding: 20px;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            opacity: 0.9;
+        }
+        a {
+            border-radius: 12px;
+            font-size: 10px;
+        }
+        .sub{
+            border-radius: 12px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main custom-style">
+        <h1>Edit Company</h1>
+
+        <form asp-action="EditCompany" method="post">
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <input asp-for="CompanyId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyStatus" class="control-label"></label>
+                <select asp-for="CompanyStatus" class="form-control">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+                <span asp-validation-for="CompanyStatus" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary btn-custom" />
+                <a asp-controller="Company" asp-action="EditCompany" class="btn btn-secondary">Cancel</a>
+            </div> *@
+            <div class="form-group">
+                <input class="sub" type="submit" value="Save" class="btn btn-primary btn-custom" />
+                <a href="@Url.Action("GetCompany", "Company")" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+@model POC3.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+
+<div class="content">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <style>
+        button{
+  height: 40px;
+  width: 80%;
+  margin: auto;
+
+
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(27, 120, 124);
+  background-color: white;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  padding: 1em 2em;
+  border-radius: 50px;
+  border: none;
+  outline: 2px solid rgb(67, 120, 124);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 1s;
+}
+
+button:hover{
+  color: #ffff;
+  transform: scale(1.1);
+  outline: 2px solid rgb(27, 120, 124);
+  box-shadow: 4px 5px 17px -4px;
+}
+
+button::before{
+  content: "";
+  background-color: rgb(27, 120, 124);
+  outline: 2px solid rgb(16, 115, 118);
+  position: absolute;
+  top: 0;
+  left: -50px;
+  height: 100%;
+  width: 0%;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: all 1s;
+}
+
+button:hover::before{
+  width: 250%;
+}
+
+    </style>
+</head>
+<body>
+    <div class="box">
+    <form asp-action="Login" asp-controller="Home" method="post">
+        <div style="text-align:center" class="form-group">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+        <h2>LOGIN</h2>
+        <!-- <label class="head">LOGIN</label> -->
+        <div style="text-align:center">
+        <label for="email" asp-for="Email" >Email</label>
+        </div>
+        <div style="text-align:center">
+        <input asp-for="Email" type="email" >
+        </div>
+
+        <div style="text-align:center">
+        <label asp-for="Password" type="Password">Password</label>
+        </div>
+        <div style="text-align:center">
+        <input asp-for="Password" type="Password" >
+        </div>
+
+        <div style="text-align:center">
+        <button type="submit"  >Submit</button>
+        </div>
+        <div style="text-align:center">
+        <a href="error">Forget Password/</a>
+        <a asp-action="Register" asp-controller="Home">New User</a>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
+</div>
+
+
+@* @model LoginViewModel
+
+<h2>Login</h2>
+
+<form asp-action="Login" asp-controller="Home" method="post">
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+}
+</form> *@

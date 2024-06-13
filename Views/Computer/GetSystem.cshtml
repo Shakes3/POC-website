@@ -1,0 +1,69 @@
+@model IEnumerable<POC3.Models.Computer>
+
+@{
+    ViewData["Title"] = "List of System";
+    int sn = 1;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+        }
+
+        .main {
+            margin-left: 260px; /* Same as the width of the sidenav */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+@Html.Partial("_SideNav")
+
+<div class="main">
+    <h1>@ViewData["Title"]</h1>
+    <a asp-controller="Computer" asp-action="AddSystem">Add System</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>S.no.</th>
+                <th>System Name</th>
+                <th>System Number</th>
+                <th>System Status</th>
+                <th>System UserName</th>
+                <th>Company Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var computers in Model)
+            {
+                <tr>
+                    <td>@(sn++)</td>
+                    @* <td>@(company.CompanyId - 1)</td> *@
+                    <td>@computers.ComputerName</td>
+                    <td>@computers.ComputerNumber</td>
+                    <td>@computers.ComputerStatus</td>
+                    <td>@computers.ComputerUserName</td>
+                    <td>@computers.Company?.CompanyName</td>
+                    <td>
+                    <form asp-action="DeleteSystem" asp-controller="Computer" method="post" style="display:inline;">
+                        <input type="hidden" name="ComputerId" value="@computers.ComputerId" />
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                    </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
